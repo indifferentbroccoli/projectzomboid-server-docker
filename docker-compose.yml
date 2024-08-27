@@ -4,6 +4,7 @@ services:
     image: test
     restart: unless-stopped
     container_name: projectzomboid
+    stop_grace_period: 30s
     ports:
       - 16261:16261/udp
       - 16262:16262/udp
