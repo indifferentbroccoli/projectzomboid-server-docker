@@ -6,8 +6,11 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/indifferentbroccoli/projectzomboid-server-docker?style=for-the-badge&color=6aa84f)
 
 Game server hosting
+
 Fast RAM, high-speed internet
+
 Eat lag for breakfast
+
 [Try our Project Zomboid Server hosting free for 2 days!](https://indifferentbroccoli.com/project-zomboid-server-hosting)
 
 # Project Zomboid Server Docker
