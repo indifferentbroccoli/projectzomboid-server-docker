@@ -76,3 +76,10 @@ shutdown_server() {
     fi
     return "$return_val"
 }
+
+# Check if the admin password has been changed
+check_admin_password() {
+    if [ -z "${ADMIN_PASSWORD}" ] ||  [ "${ADMIN_PASSWORD}" == "admin" ] || [ "${ADMIN_PASSWORD}" == "CHANGEME" ]; then
+        LogWarn "ADMIN_PASSWORD is not set or is insecure. Please set this in the environment variables."
+    fi
+}
