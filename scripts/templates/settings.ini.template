@@ -1,407 +1,407 @@
 # Players can hurt and kill other players
-PVP=true
+PVP=$PVP
 
 # Game time stops when there are no players online
-PauseEmpty=true
+PauseEmpty=$PAUSE_EMPTY
 
 # Toggles global chat on or off.
-GlobalChat=true
+GlobalChat=$GLOBAL_CHAT
 
-ChatStreams=s,r,a,w,y,sh,f,all
+ChatStreams=$CHAT_STREAMS
 
 # Clients may join without already having an account in the whitelist. If set to false, administrators must manually create username/password combos.
-Open=true
+Open=$OPEN
 
 # The first welcome message visible in the chat panel. This will be displayed immediately after player login. you can use RGB colours to chance the colour of the welcome message. You can also use <LINE> to create a separate lines within your text. Use: <RGB:1,0,0> This message will show up red!
-ServerWelcomeMessage=Welcome to Project Zomboid Multiplayer! <LINE> <LINE> To interact with the Chat panel: press Tab, T, or Enter. <LINE> <LINE> The Tab key will change the target stream of the message. <LINE> <LINE> Global Streams: /all <LINE> Local Streams: /say, /yell <LINE> Special Steams: /whisper, /safehouse, /faction. <LINE> <LINE> Press the Up arrow to cycle through your message history. Click the Gear icon to customize chat. <LINE> <LINE> Happy surviving!
+ServerWelcomeMessage=$SERVER_WELCOME_MESSAGE
 
 # Add unknown usernames to the whitelist when players join. Clients will supply their own username/password on joining. (This is for Open=true servers)
-AutoCreateUserInWhiteList=false
+AutoCreateUserInWhiteList=$AUTO_CREATE_USER_IN_WHITE_LIST
 
 # Display usernames above player's heads in-game.
-DisplayUserName=true
+DisplayUserName=$DISPLAY_USER_NAME
 
 # Display first & last name above player's heads.
-ShowFirstAndLastName=false
+ShowFirstAndLastName=$SHOW_FIRST_AND_LAST_NAME
 
 # Force every new player to spawn at these set x,y,z world coordinates. Find desired coordinates at map.projectzomboid.com. (Ignored when 0,0,0)
-SpawnPoint=0,0,0
+SpawnPoint=$SPAWN_POINT
 
 # Players can enter and leave PVP on an individual basis. A player can only hurt another player when at least one of them is in PVP mode - as shown by the unobscured skull and crossbones on the left of the screen. When SafetySystem=false, players are free to hurt each other at any time if PVP is enabled.
-SafetySystem=true
+SafetySystem=$SAFETY_SYSTEM
 
 # Display a skull icon over the head of players who have entered PVP mode
-ShowSafety=true
+ShowSafety=$SHOW_SAFETY
 
 # The time it takes for a player to enter and leave PVP mode\nMinimum=0 Maximum=1000 Default=2
-SafetyToggleTimer=2
+SafetyToggleTimer=$SAFETY_TOGGLE_TIMER
 
 # The delay before a player can enter or leave PVP mode again, having recently done so\nMinimum=0 Maximum=1000 Default=3
-SafetyCooldownTimer=3
+SafetyCooldownTimer=$SAFETY_COOLDOWN_TIMER
 
 # Item types new players spawn with.\nSeparate multiple item types with commas.\nExample: Base.Axe,Base.Bag_BigHikingBag
-SpawnItems=
+SpawnItems=$SPAWN_ITEMS
 
 # Default starting port for player data. If UDP, this is this one of two ports used.\nMinimum=0 Maximum=65535 Default=16261
-DefaultPort=16261
+DefaultPort=$DEFAULT_PORT
 
 # Minimum=0 Maximum=65535 Default=16262
-UDPPort=16262
+UDPPort=$UDP_PORT
 
-# Reset ID determines if the server has undergone a soft-reset. If this number does match the client, the client must create a new character. Used in conjunction with PlayerServerID. It is strongly advised that you backup these IDs somewhere\nMinimum=0 Maximum=2147483647 Default=46201674
-ResetID=64657004
+# Reset ID determines if the server has undergone a soft-reset. If this number does match the client, the client must create a new character. Used in conjunction with PlayerServerID. It is strongly advised that you backup these IDs somewhere\nMinimum=0 Maximum=2147483647 Default=563979383
+ResetID=$RESET_ID
 
 # Enter the mod loading ID here. It can be found in \Steam\steamapps\workshop\modID\mods\modName\info.txt
-Mods=
+Mods=$MODS
 
 # Enter the foldername of the mod found in \Steam\steamapps\workshop\modID\mods\modName\media\maps\
-Map=Muldraugh, KY
+Map=$MAP
 
 # Kick clients whose game files don't match the server's.
-DoLuaChecksum=true
+DoLuaChecksum=$DO_LUA_CHECKSUM
 
-DenyLoginOnOverloadedServer=true
+DenyLoginOnOverloadedServer=$DENY_LOGIN_ON_OVERLOADED_SERVER
 
 # Shows the server on the in-game browser. (Note: Steam-enabled servers are always visible in the Steam server browser)
-Public=false
+Public=$PUBLIC
 
 # Name of the server displayed in the in-game browser and, if applicable, the Steam browser
-PublicName=My PZ Server
+PublicName=$PUBLIC_NAME
 
 # Description displayed in the in-game public server browser. Typing \n will create a new line in your description
-PublicDescription=
+PublicDescription=$PUBLIC_DESCRIPTION
 
 # Maximum number of players that can be on the server at one time. This excludes admins.
 # WARNING: Server player counts above 32 will potentially result in poor map streaming and desync. Please advance with caution.\nMinimum=1 Maximum=100 Default=32
-MaxPlayers=32
+MaxPlayers=$MAX_PLAYERS
 
 # Ping limit, in milliseconds, before a player is kicked from the server. (Set to 100 to disable)\nMinimum=100 Maximum=2147483647 Default=400
-PingLimit=400
+PingLimit=$PING_LIMIT
 
 # After X hours, all containers in the world will respawn loot. To spawn loot a container must have been looted at least once. Loot respawn is not impacted by visibility or subsequent looting.\nMinimum=0 Maximum=2147483647 Default=0
-HoursForLootRespawn=0
+HoursForLootRespawn=$HOURS_FOR_LOOT_RESPAWN
 
 # Containers with a number of items greater, or equal to, this setting will not respawn\nMinimum=1 Maximum=2147483647 Default=4
-MaxItemsForLootRespawn=4
+MaxItemsForLootRespawn=$MAX_ITEMS_FOR_LOOT_RESPAWN
 
 # Items will not respawn in buildings that players have barricaded or built in
-ConstructionPreventsLootRespawn=true
+ConstructionPreventsLootRespawn=$CONSTRUCTION_PREVENTS_LOOT_RESPAWN
 
 # Remove player accounts from the whitelist after death. This prevents players creating a new character after death on Open=false servers
-DropOffWhiteListAfterDeath=false
+DropOffWhiteListAfterDeath=$DROP_OFF_WHITE_LIST_AFTER_DEATH
 
 # All forms of fire are disabled - except for campfires
-NoFire=false
+NoFire=$NO_FIRE
 
 # If checked, every time a player dies a global message will be displayed in the chat
-AnnounceDeath=false
+AnnounceDeath=$ANNOUNCE_DEATH
 
 # The number of in-game minutes it takes to read one page of a book\nMinimum=0.00 Maximum=60.00 Default=1.00
-MinutesPerPage=1.0
+MinutesPerPage=$MINUTES_PER_PAGE
 
 # Loaded parts of the map are saved after this set number of real-world minutes have passed. (The map is usually saved only after clients leave a loaded area)\nMinimum=0 Maximum=2147483647 Default=0
-SaveWorldEveryMinutes=0
+SaveWorldEveryMinutes=$SAVE_WORLD_EVERY_MINUTES
 
 # Both admins and players can claim safehouses
-PlayerSafehouse=false
+PlayerSafehouse=$PLAYER_SAFEHOUSE
 
 # Only admins can claim safehouses
-AdminSafehouse=false
+AdminSafehouse=$ADMIN_SAFEHOUSE
 
 # Allow non-members to enter a safehouse without being invited
-SafehouseAllowTrepass=true
+SafehouseAllowTrepass=$SAFEHOUSE_ALLOW_TREPASS
 
 # Allow fire to damage safehouses
-SafehouseAllowFire=true
+SafehouseAllowFire=$SAFEHOUSE_ALLOW_FIRE
 
 # Allow non-members to take items from safehouses
-SafehouseAllowLoot=true
+SafehouseAllowLoot=$SAFEHOUSE_ALLOW_LOOT
 
 # Players will respawn in a safehouse that they were a member of before they died
-SafehouseAllowRespawn=false
+SafehouseAllowRespawn=$SAFEHOUSE_ALLOW_RESPAWN
 
 # Players must have survived this number of in-game days before they are allowed to claim a safehouse\nMinimum=0 Maximum=2147483647 Default=0
-SafehouseDaySurvivedToClaim=0
+SafehouseDaySurvivedToClaim=$SAFEHOUSE_DAY_SURVIVED_TO_CLAIM
 
 # Players are automatically removed from a safehouse they have not visited for this many real-world hours\nMinimum=0 Maximum=2147483647 Default=144
-SafeHouseRemovalTime=144
+SafeHouseRemovalTime=$SAFE_HOUSE_REMOVAL_TIME
 
 # Governs whether players can claim non-residential buildings.
-SafehouseAllowNonResidential=false
+SafehouseAllowNonResidential=$SAFEHOUSE_ALLOW_NON_RESIDENTIAL
 
 # Allow players to destroy world objects with sledgehammers
-AllowDestructionBySledgehammer=true
+AllowDestructionBySledgehammer=$ALLOW_DESTRUCTION_BY_SLEDGEHAMMER
 
 # Allow players to destroy world objects only in their safehouse (require AllowDestructionBySledgehammer to true).
-SledgehammerOnlyInSafehouse=false
+SledgehammerOnlyInSafehouse=$SLEDGEHAMMER_ONLY_IN_SAFEHOUSE
 
 # Kick players that appear to be moving faster than is possible. May be buggy -- use with caution.
-KickFastPlayers=false
+KickFastPlayers=$KICK_FAST_PLAYERS
 
 # ServerPlayerID determines if a character is from another server, or single player. This value may be changed by soft resets. If this number does match the client, the client must create a new character. This is used in conjunction with ResetID. It is strongly advised that you backup these IDs somewhere
-ServerPlayerID=1992170050
+ServerPlayerID=$SERVER_PLAYER_ID
 
 # The port for the RCON (Remote Console)\nMinimum=0 Maximum=65535 Default=27015
-RCONPort=27015
+RCONPort=$RCON_PORT
 
 # RCON password (Pick a strong password)
-RCONPassword=
+RCONPassword=$RCON_PASSWORD
 
 # Enables global text chat integration with a Discord channel
-DiscordEnable=false
+DiscordEnable=$DISCORD_ENABLE
 
 # Discord bot access token
-DiscordToken=
+DiscordToken=$DISCORD_TOKEN
 
 # The Discord channel name. (Try the separate channel ID option if having difficulties)
-DiscordChannel=
+DiscordChannel=$DISCORD_CHANNEL
 
 # The Discord channel ID. (Use if having difficulties with Discord channel name option)
-DiscordChannelID=
+DiscordChannelID=$DISCORD_CHANNEL_ID
 
 # Clients must know this password to join the server. (Ignored when hosting a server via the Host button)
-Password=
+Password=$SERVER_PASSWORD
 
 # Limits the number of different accounts a single Steam user may create on this server. Ignored when using the Hosts button.\nMinimum=0 Maximum=2147483647 Default=0
-MaxAccountsPerUser=0
+MaxAccountsPerUser=$MAX_ACCOUNTS_PER_USER
 
 # Allow co-op/splitscreen players
-AllowCoop=true
+AllowCoop=$ALLOW_COOP
 
 # Players are allowed to sleep when their survivor becomes tired, but they do not NEED to sleep
-SleepAllowed=false
+SleepAllowed=$SLEEP_ALLOWED
 
 # Players get tired and need to sleep. (Ignored if SleepAllowed=false)
-SleepNeeded=false
+SleepNeeded=$SLEEP_NEEDED
 
-KnockedDownAllowed=true
+KnockedDownAllowed=$KNOCKED_DOWN_ALLOWED
 
-SneakModeHideFromOtherPlayers=true
+SneakModeHideFromOtherPlayers=$SNEAK_MODE_HIDE_FROM_OTHER_PLAYERS
 
 # List Workshop Mod IDs for the server to download. Each must be separated by a semicolon. Example: WorkshopItems=514427485;513111049
-WorkshopItems=
+WorkshopItems=$WORKSHOP_ITEMS
 
 # Show Steam usernames and avatars in the Players list. Can be true (visible to everyone), false (visible to no one), or admin (visible to only admins)
-SteamScoreboard=true
+SteamScoreboard=$STEAM_SCOREBOARD
 
 # Enable the Steam VAC system
-SteamVAC=true
+SteamVAC=$STEAM_VAC
 
 # Attempt to configure a UPnP-enabled internet gateway to automatically setup port forwarding rules. The server will fall back to default ports if this fails
-UPnP=true
+UPnP=$UPNP
 
 # VOIP is enabled when checked
-VoiceEnable=true
+VoiceEnable=$VOICE_ENABLE
 
 # The minimum tile distance over which VOIP sounds can be heard.\nMinimum=0.00 Maximum=100000.00 Default=10.00
-VoiceMinDistance=10.0
+VoiceMinDistance=$VOICE_MIN_DISTANCE
 
 # The maximum tile distance over which VOIP sounds can be heard.\nMinimum=0.00 Maximum=100000.00 Default=100.00
-VoiceMaxDistance=100.0
+VoiceMaxDistance=$VOICE_MAX_DISTANCE
 
 # Toggle directional audio for VOIP
-Voice3D=true
+Voice3D=$VOICE_3D
 
 # Minimum=10.00 Maximum=150.00 Default=70.00
-SpeedLimit=70.0
+SpeedLimit=$SPEED_LIMIT
 
-LoginQueueEnabled=false
+LoginQueueEnabled=$LOGIN_QUEUE_ENABLED
 
 # Minimum=20 Maximum=1200 Default=60
-LoginQueueConnectTimeout=60
+LoginQueueConnectTimeout=$LOGIN_QUEUE_CONNECT_TIMEOUT
 
 # Set the IP from which the server is broadcast. This is for network configurations with multiple IP addresses, such as server farms
-server_browser_announced_ip=
+server_browser_announced_ip=$SERVER_BROWSER_ANNOUNCED_IP
 
 # Players can respawn in-game at the coordinates where they died
-PlayerRespawnWithSelf=false
+PlayerRespawnWithSelf=$PLAYER_RESPAWN_WITH_SELF
 
 # Players can respawn in-game at a split screen / Remote Play player's location
-PlayerRespawnWithOther=false
+PlayerRespawnWithOther=$PLAYER_RESPAWN_WITH_OTHER
 
 # Governs how fast time passes while players sleep. Value multiplies the speed of the time that passes during sleeping.\nMinimum=1.00 Maximum=100.00 Default=40.00
-FastForwardMultiplier=40.0
+FastForwardMultiplier=$FAST_FORWARD_MULTIPLIER
 
 # Safehouse acts like a normal house if a member of the safehouse is connected (so secure when players are offline)
-DisableSafehouseWhenPlayerConnected=false
+DisableSafehouseWhenPlayerConnected=$DISABLE_SAFEHOUSE_WHEN_PLAYER_CONNECTED
 
 # Players can create factions when true
-Faction=true
+Faction=$FACTION
 
 # Players must survive this number of in-game days before being allowed to create a faction\nMinimum=0 Maximum=2147483647 Default=0
-FactionDaySurvivedToCreate=0
+FactionDaySurvivedToCreate=$FACTION_DAY_SURVIVED_TO_CREATE
 
 # Number of players required as faction members before the faction owner can create a group tag\nMinimum=1 Maximum=2147483647 Default=1
-FactionPlayersRequiredForTag=1
+FactionPlayersRequiredForTag=$FACTION_PLAYERS_REQUIRED_FOR_TAG
 
 # Disables radio transmissions from players with an access level
-DisableRadioStaff=false
+DisableRadioStaff=$DISABLE_RADIO_STAFF
 
 # Disables radio transmissions from players with 'admin' access level
-DisableRadioAdmin=true
+DisableRadioAdmin=$DISABLE_RADIO_ADMIN
 
 # Disables radio transmissions from players with 'gm' access level
-DisableRadioGM=true
+DisableRadioGM=$DISABLE_RADIO_GM
 
 # Disables radio transmissions from players with 'overseer' access level
-DisableRadioOverseer=false
+DisableRadioOverseer=$DISABLE_RADIO_OVERSEER
 
 # Disables radio transmissions from players with 'moderator' access level
-DisableRadioModerator=false
+DisableRadioModerator=$DISABLE_RADIO_MODERATOR
 
 # Disables radio transmissions from invisible players
-DisableRadioInvisible=true
+DisableRadioInvisible=$DISABLE_RADIO_INVISIBLE
 
 # Semicolon-separated list of commands that will not be written to the cmd.txt server log. For example: \n-vehicle. Inputting * means do NOT write any vehicle command. Inputting: \n+vehicle.installPart means DO write that command
-ClientCommandFilter=-vehicle.*;+vehicle.damageWindow;+vehicle.fixPart;+vehicle.installPart;+vehicle.uninstallPart
+ClientCommandFilter=$CLIENT_COMMAND_FILTER
 
 # Semicolon-separated list of actions that will be written to the ClientActionLogs.txt server log.
-ClientActionLogs=ISEnterVehicle;ISExitVehicle;ISTakeEngineParts;
+ClientActionLogs=$CLIENT_ACTION_LOGS
 
 # Track changes in player perk levels in PerkLog.txt server log
-PerkLogs=true
+PerkLogs=$PERK_LOGS
 
 # Maximum number of items that can be placed in a container.  Zero means there is no limit. (PLEASE NOTE: This includes individual small items such as nails. A limit of 50 will mean only 50 nails can be stored.)\nMinimum=0 Maximum=9000 Default=0
-ItemNumbersLimitPerContainer=0
+ItemNumbersLimitPerContainer=$ITEM_NUMBERS_LIMIT_PER_CONTAINER
 
 # Number of days before old blood splats are removed.
 # Removal happens when map chunks are loaded.
 # Zero means they will never disappear\nMinimum=0 Maximum=365 Default=0
-BloodSplatLifespanDays=0
+BloodSplatLifespanDays=$BLOOD_SPLAT_LIFESPAN_DAYS
 
 # Allow use of non-ASCII (cyrillic etc) characters in usernames
-AllowNonAsciiUsername=false
+AllowNonAsciiUsername=$ALLOW_NON_ASCII_USERNAME
 
-BanKickGlobalSound=true
+BanKickGlobalSound=$BAN_KICK_GLOBAL_SOUND
 
-# If enabled, when HoursForCorpseRemoval triggers, it will also remove player’s corpses from the ground.
-RemovePlayerCorpsesOnCorpseRemoval=false
+# If enabled, when HoursForCorpseRemoval triggers, it will also remove player?s corpses from the ground.
+RemovePlayerCorpsesOnCorpseRemoval=$REMOVE_PLAYER_CORPSES_ON_CORPSE_REMOVAL
 
 # If true, player can use the "delete all" button on bins.
-TrashDeleteAll=false
+TrashDeleteAll=$TRASH_DELETE_ALL
 
 # If true, player can hit again when struck by another player.
-PVPMeleeWhileHitReaction=false
+PVPMeleeWhileHitReaction=$PVP_MELEE_WHILE_HIT_REACTION
 
 # If true, players will have to mouse over someone to see their display name.
-MouseOverToSeeDisplayName=true
+MouseOverToSeeDisplayName=$MOUSE_OVER_TO_SEE_DISPLAY_NAME
 
 # If true, automatically hide the player you can't see (like zombies).
-HidePlayersBehindYou=true
+HidePlayersBehindYou=$HIDE_PLAYERS_BEHIND_YOU
 
 # Damage multiplier for PVP melee attacks.\nMinimum=0.00 Maximum=500.00 Default=30.00
-PVPMeleeDamageModifier=30.0
+PVPMeleeDamageModifier=$PVP_MELEE_DAMAGE_MODIFIER
 
 # Damage multiplier for PVP ranged attacks.\nMinimum=0.00 Maximum=500.00 Default=50.00
-PVPFirearmDamageModifier=50.0
+PVPFirearmDamageModifier=$PVP_FIREARM_DAMAGE_MODIFIER
 
 # Modify the range of zombie attraction to cars. (Lower values can help with lag.)\nMinimum=0.00 Maximum=10.00 Default=0.50
-CarEngineAttractionModifier=0.5
+CarEngineAttractionModifier=$CAR_ENGINE_ATTRACTION_MODIFIER
 
 # Governs whether players bump (and knock over) other players when running through them.
-PlayerBumpPlayer=false
+PlayerBumpPlayer=$PLAYER_BUMP_PLAYER
 
 # Controls display of remote players on the in-game map.\n1=Hidden 2=Friends 3=Everyone\nMinimum=1 Maximum=3 Default=1
-MapRemotePlayerVisibility=1
+MapRemotePlayerVisibility=$MAP_REMOTE_PLAYER_VISIBILITY
 
 # Minimum=1 Maximum=300 Default=5
-BackupsCount=5
+BackupsCount=$BACKUPS_COUNT
 
-BackupsOnStart=true
+BackupsOnStart=$BACKUPS_ON_START
 
-BackupsOnVersionChange=true
+BackupsOnVersionChange=$BACKUPS_ON_VERSION_CHANGE
 
 # Minimum=0 Maximum=1500 Default=0
-BackupsPeriod=0
+BackupsPeriod=$BACKUPS_PERIOD
 
 # Disables anti-cheat protection for type 1.
-AntiCheatProtectionType1=true
+AntiCheatProtectionType1=$ANTI_CHEAT_PROTECTION_TYPE1
 
 # Disables anti-cheat protection for type 2.
-AntiCheatProtectionType2=true
+AntiCheatProtectionType2=$ANTI_CHEAT_PROTECTION_TYPE2
 
 # Disables anti-cheat protection for type 3.
-AntiCheatProtectionType3=true
+AntiCheatProtectionType3=$ANTI_CHEAT_PROTECTION_TYPE3
 
 # Disables anti-cheat protection for type 4.
-AntiCheatProtectionType4=true
+AntiCheatProtectionType4=$ANTI_CHEAT_PROTECTION_TYPE4
 
 # Disables anti-cheat protection for type 5.
-AntiCheatProtectionType5=true
+AntiCheatProtectionType5=$ANTI_CHEAT_PROTECTION_TYPE5
 
 # Disables anti-cheat protection for type 6.
-AntiCheatProtectionType6=true
+AntiCheatProtectionType6=$ANTI_CHEAT_PROTECTION_TYPE6
 
 # Disables anti-cheat protection for type 7.
-AntiCheatProtectionType7=true
+AntiCheatProtectionType7=$ANTI_CHEAT_PROTECTION_TYPE7
 
 # Disables anti-cheat protection for type 8.
-AntiCheatProtectionType8=true
+AntiCheatProtectionType8=$ANTI_CHEAT_PROTECTION_TYPE8
 
 # Disables anti-cheat protection for type 9.
-AntiCheatProtectionType9=true
+AntiCheatProtectionType9=$ANTI_CHEAT_PROTECTION_TYPE9
 
 # Disables anti-cheat protection for type 10.
-AntiCheatProtectionType10=true
+AntiCheatProtectionType10=$ANTI_CHEAT_PROTECTION_TYPE10
 
 # Disables anti-cheat protection for type 11.
-AntiCheatProtectionType11=true
+AntiCheatProtectionType11=$ANTI_CHEAT_PROTECTION_TYPE11
 
 # Disables anti-cheat protection for type 12.
-AntiCheatProtectionType12=true
+AntiCheatProtectionType12=$ANTI_CHEAT_PROTECTION_TYPE12
 
 # Disables anti-cheat protection for type 13.
-AntiCheatProtectionType13=true
+AntiCheatProtectionType13=$ANTI_CHEAT_PROTECTION_TYPE13
 
 # Disables anti-cheat protection for type 14.
-AntiCheatProtectionType14=true
+AntiCheatProtectionType14=$ANTI_CHEAT_PROTECTION_TYPE14
 
 # Disables anti-cheat protection for type 15.
-AntiCheatProtectionType15=true
+AntiCheatProtectionType15=$ANTI_CHEAT_PROTECTION_TYPE15
 
 # Disables anti-cheat protection for type 16.
-AntiCheatProtectionType16=true
+AntiCheatProtectionType16=$ANTI_CHEAT_PROTECTION_TYPE16
 
 # Disables anti-cheat protection for type 17.
-AntiCheatProtectionType17=true
+AntiCheatProtectionType17=$ANTI_CHEAT_PROTECTION_TYPE17
 
 # Disables anti-cheat protection for type 18.
-AntiCheatProtectionType18=true
+AntiCheatProtectionType18=$ANTI_CHEAT_PROTECTION_TYPE18
 
 # Disables anti-cheat protection for type 19.
-AntiCheatProtectionType19=true
+AntiCheatProtectionType19=$ANTI_CHEAT_PROTECTION_TYPE19
 
 # Disables anti-cheat protection for type 20.
-AntiCheatProtectionType20=true
+AntiCheatProtectionType20=$ANTI_CHEAT_PROTECTION_TYPE20
 
-AntiCheatProtectionType21=true
+AntiCheatProtectionType21=$ANTI_CHEAT_PROTECTION_TYPE21
 
-AntiCheatProtectionType22=true
+AntiCheatProtectionType22=$ANTI_CHEAT_PROTECTION_TYPE22
 
-AntiCheatProtectionType23=true
+AntiCheatProtectionType23=$ANTI_CHEAT_PROTECTION_TYPE23
 
-AntiCheatProtectionType24=true
+AntiCheatProtectionType24=$ANTI_CHEAT_PROTECTION_TYPE24
 
 # Threshold value multiplier for anti-cheat protection: type 2.\nMinimum=1.00 Maximum=10.00 Default=3.00
-AntiCheatProtectionType2ThresholdMultiplier=3.0
+AntiCheatProtectionType2ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE2_THRESHOLD_MULTIPLIER
 
 # Threshold value multiplier for anti-cheat protection: type 3.\nMinimum=1.00 Maximum=10.00 Default=1.00
-AntiCheatProtectionType3ThresholdMultiplier=1.0
+AntiCheatProtectionType3ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE3_THRESHOLD_MULTIPLIER
 
 # Threshold value multiplier for anti-cheat protection: type 4.\nMinimum=1.00 Maximum=10.00 Default=1.00
-AntiCheatProtectionType4ThresholdMultiplier=1.0
+AntiCheatProtectionType4ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE4_THRESHOLD_MULTIPLIER
 
 # Threshold value multiplier for anti-cheat protection: type 9.\nMinimum=1.00 Maximum=10.00 Default=1.00
-AntiCheatProtectionType9ThresholdMultiplier=1.0
+AntiCheatProtectionType9ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE9_THRESHOLD_MULTIPLIER
 
 # Threshold value multiplier for anti-cheat protection: type 15.\nMinimum=1.00 Maximum=10.00 Default=1.00
-AntiCheatProtectionType15ThresholdMultiplier=1.0
+AntiCheatProtectionType15ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE15_THRESHOLD_MULTIPLIER
 
 # Threshold value multiplier for anti-cheat protection: type 20.\nMinimum=1.00 Maximum=10.00 Default=1.00
-AntiCheatProtectionType20ThresholdMultiplier=1.0
+AntiCheatProtectionType20ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE20_THRESHOLD_MULTIPLIER
 
 # Minimum=1.00 Maximum=10.00 Default=1.00
-AntiCheatProtectionType22ThresholdMultiplier=1.0
+AntiCheatProtectionType22ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE22_THRESHOLD_MULTIPLIER
 
 # Minimum=1.00 Maximum=10.00 Default=6.00
-AntiCheatProtectionType24ThresholdMultiplier=6.0
+AntiCheatProtectionType24ThresholdMultiplier=$ANTI_CHEAT_PROTECTION_TYPE24_THRESHOLD_MULTIPLIER

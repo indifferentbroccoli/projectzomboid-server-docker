@@ -21,6 +21,11 @@ RUN wget -q https://github.com/gorcon/rcon-cli/archive/refs/tags/v${RCON_VERSION
 #BUILD THE SERVER IMAGE
 FROM cm2network/steamcmd:root
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gettext-base=0.21-12 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=rcon-cli_builder /build/gorcon /usr/bin/rcon-cli
 
 LABEL maintainer="support@indifferentbroccoli.com" \
@@ -29,10 +34,23 @@ LABEL maintainer="support@indifferentbroccoli.com" \
       dockerhub="https://hub.docker.com/r/indifferentbroccoli/projectzomboid-server-docker"
 
 ENV HOME=/home/steam \
-    CONFIG_DIR=/project-zomboid-config
+    CONFIG_DIR=/project-zomboid-config \
+    ADMIN_USERNAME=test \
+    ADMIN_PASSWORD=test \
+    DEFAULT_PORT=16261 \
+    UDP_PORT=16262 \
+    RCON_PORT=27015 \
+    SERVER_NAME=indifferentbroccoli \
+    STEAM_VAC=true \
+    USE_STEAM=true \
+    GENERATE_SETTINGS=true
 
 COPY ./scripts /home/steam/server/
+RUN cp /home/steam/.steam/sdk64/steamclient.so /home/steam/server/steamclient.so
+
 COPY branding /branding
+
+RUN mkdir -p /project-zomboid /project-zomboid-config
 
 RUN chmod +x /home/steam/server/*.sh
 

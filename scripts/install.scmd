@@ -1,0 +1,15 @@
+// Do not shutdown on a failed command
+@ShutdownOnFailedCommand 0
+
+//No password as this is unattended
+@NoPromptForPassword 1
+
+// Set the game installation directory
+force_install_dir /project-zomboid
+
+login anonymous
+
+// Install/Update the Project Zomboid Dedicated Server
+app_update 380870 validate
+
+quit

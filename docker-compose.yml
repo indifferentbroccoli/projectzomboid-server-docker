@@ -7,6 +7,8 @@ services:
       - 16261:16261/udp
       - 16262:16262/udp
       - 27015:27015/tcp
+    env_file:
+      - .env.example
     volumes:
       - ./projectzomboid/data:/project-zomboid
       - ./projectzomboid/config:/project-zomboid-config
