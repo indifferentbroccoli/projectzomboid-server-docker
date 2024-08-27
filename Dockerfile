@@ -23,6 +23,7 @@ FROM cm2network/steamcmd:root
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext-base=0.21-12 \
+    procps=2:4.0.2-3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -54,5 +55,8 @@ RUN cp /home/steam/.steam/sdk64/steamclient.so /home/steam/server/steamclient.so
     chmod +x /home/steam/server/*.sh
 
 WORKDIR /home/steam/server
+
+HEALTHCHECK --start-period=5m \
+            CMD pgrep "ProjectZomboid" > /dev/null || exit 1
 
 ENTRYPOINT ["/home/steam/server/init.sh"]
