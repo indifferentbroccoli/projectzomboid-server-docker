@@ -50,8 +50,7 @@ COPY ./scripts /home/steam/server/
 
 COPY branding /branding
 
-RUN cp /home/steam/.steam/sdk64/steamclient.so /home/steam/server/steamclient.so && \
-    mkdir -p /project-zomboid /project-zomboid-config && \
+RUN mkdir -p /project-zomboid /project-zomboid-config && \
     chmod +x /home/steam/server/*.sh
 
 WORKDIR /home/steam/server
