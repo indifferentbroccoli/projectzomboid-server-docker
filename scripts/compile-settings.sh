@@ -150,5 +150,5 @@ cat > "/project-zomboid-config/Server/${SERVER_NAME}.ini" <<EOF
 $(envsubst < /home/steam/server/templates/settings.ini.template)
 EOF
 
-cp /home/steam/server/templates/server_spawnpoints.lua.template /project-zomboid-config/Server/${SERVER_NAME}_spawnpoints.lua
-cp /home/steam/server/templates/server_spawnregions.lua.template /project-zomboid-config/Server/${SERVER_NAME}_spawnregions.lua
+cp /home/steam/server/templates/server_spawnpoints.lua.template "/project-zomboid-config/Server/${SERVER_NAME}_spawnpoints.lua"
+cp /home/steam/server/templates/server_spawnregions.lua.template "/project-zomboid-config/Server/${SERVER_NAME}_spawnregions.lua"

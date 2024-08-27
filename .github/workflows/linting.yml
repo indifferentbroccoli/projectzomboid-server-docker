@@ -17,8 +17,8 @@ jobs:
 
       - name: Shellcheck
         uses: ludeeus/action-shellcheck@2.0.0
-        env: 
-            SHELLCHECK_OPTS: -e SC1017
+        env:
+          SHELLCHECK_OPTS: -e SC1017
 
   dockerlint:
     name: Lint - Docker
