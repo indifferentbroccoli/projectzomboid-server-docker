@@ -21,17 +21,19 @@ install
 
 # shellcheck disable=SC2317
 term_handler() {
-
     if ! shutdown_server; then
         # Does not save
         kill -SIGTERM "$(pidof ProjectZomboid64)"
     fi
-
     tail --pid="$killpid" -f 2>/dev/null
 }
 
 trap 'term_handler' SIGTERM
 
+# Check config for warnings
+check_admin_password
+
+# Start the server
 ./start.sh &
 
 # Process ID of su
