@@ -14,3 +14,6 @@ Eat lag for breakfast
 [Try our Project Zomboid Server hosting free for 2 days!](https://indifferentbroccoli.com/project-zomboid-server-hosting)
 
 # Project Zomboid Server Docker
+
+> [!IMPORTANT]
+> Using Docker Desktop with WSL2 on Windows will result in a very slow download!
