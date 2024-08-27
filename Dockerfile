@@ -46,13 +46,12 @@ ENV HOME=/home/steam \
     GENERATE_SETTINGS=true
 
 COPY ./scripts /home/steam/server/
-RUN cp /home/steam/.steam/sdk64/steamclient.so /home/steam/server/steamclient.so
 
 COPY branding /branding
 
-RUN mkdir -p /project-zomboid /project-zomboid-config
-
-RUN chmod +x /home/steam/server/*.sh
+RUN cp /home/steam/.steam/sdk64/steamclient.so /home/steam/server/steamclient.so && \
+    mkdir -p /project-zomboid /project-zomboid-config && \
+    chmod +x /home/steam/server/*.sh
 
 WORKDIR /home/steam/server
 
