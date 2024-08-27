@@ -41,7 +41,7 @@ Log() {
 
 install() {
   LogAction "Starting server install"
-  /home/steam/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType linux +@sSteamCmdForcePlatformBitness 64 +force_install_dir "/project-zomboid" +login anonymous +app_update 380870 validate +quit
+  /home/steam/steamcmd/steamcmd.sh +runscript /home/steam/server/install.scmd
 }
 
 # rcon call

@@ -2,10 +2,12 @@
 # shellcheck source=scripts/functions.sh
 source "/home/steam/server/functions.sh"
 
-cat /branding
+LogAction "Set file permissions"
+usermod -o -u "${PUID}" steam
+groupmod -o -g "${PGID}" steam
+chown -R steam:steam /project-zomboid /project-zomboid-config /home/steam/
 
-LogAction "Creating Folders"
-mkdir -p /project-zomboid /project-zomboid-config
+cat /branding
 
 install
 
@@ -22,11 +24,8 @@ term_handler() {
 
 trap 'term_handler' SIGTERM
 
-if [[ "$(id -u)" -eq 0 ]]; then
-    su steam -c ./start.sh &
-else
-    ./start.sh &
-fi
+./start.sh &
+
 # Process ID of su
 killpid="$!"
 wait "$killpid"
