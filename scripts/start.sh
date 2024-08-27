@@ -3,7 +3,7 @@
 source "/home/steam/server/functions.sh"
 
 # Configure RCON settings
-cat >/home/steam/server/rcon.yaml  <<EOL
+cat >/home/steam/server/rcon.yml  <<EOL
 default:
   address: "127.0.0.1:${RCON_PORT}"
   password: "${RCON_PASSWORD}"

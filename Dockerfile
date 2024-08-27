@@ -35,8 +35,6 @@ LABEL maintainer="support@indifferentbroccoli.com" \
 
 ENV HOME=/home/steam \
     CONFIG_DIR=/project-zomboid-config \
-    ADMIN_USERNAME=test \
-    ADMIN_PASSWORD=test \
     DEFAULT_PORT=16261 \
     UDP_PORT=16262 \
     RCON_PORT=27015 \
