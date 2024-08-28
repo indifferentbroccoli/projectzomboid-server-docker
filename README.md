@@ -227,3 +227,39 @@ It is highly recommended you set the following environment values before startin
 | ANTI_CHEAT_PROTECTION_TYPE20_THRESHOLD_MULTIPLIER | 1.0                                                                                           | Anti cheat protection type 20 threshold multiplier                                                                                                  |
 | ANTI_CHEAT_PROTECTION_TYPE22_THRESHOLD_MULTIPLIER | 1.0                                                                                           | Anti cheat protection type 22 threshold multiplier                                                                                                  |
 | ANTI_CHEAT_PROTECTION_TYPE24_THRESHOLD_MULTIPLIER | 6.0                                                                                           | Anti cheat protection type 24 threshold multiplier                                                                                                  |
+
+## Developer information
+
+### Building the image
+
+You can build the image from the Dockerfile using the following command:
+
+```bash
+docker build -t indifferentbroccoli/projectzomboid-server-docker .
+```
+
+### Scripts
+
+#### init.sh
+
+Entrypoint of the container. This script will check if the server is installed and if not, it will install it.
+Also has a term_handler function to catch SIGTERM signals to gracefully stop the server.
+Features basic checks that will confirm if the server can be started.
+
+#### start.sh
+
+Starts the server with the settings from the .env file.
+Will also call the compile-settings.sh script to generate the server settings.
+
+#### install.scmd
+
+Installs the server. This script will download the server files using SteamCMD and extract them to the server directory.
+
+#### funtions.sh
+
+Contains functions that are used in the other scripts.
+
+#### compile-settings.sh
+
+Generates the server settings file from the .env file.
+Uses envsubst to replace the variables in the settings.ini.template file.
