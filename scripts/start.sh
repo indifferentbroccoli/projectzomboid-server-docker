@@ -16,6 +16,8 @@ cd /project-zomboid || exit
 if [ "$GENERATE_SETTINGS" = "true" ]; then
   LogAction "Compiling settings"
   /home/steam/server/compile-settings.sh
+elif [ "$GENERATE_SETTINGS" = "false" ]; then
+  LogWarn "GENERATE_SETTINGS=false, not overwriting settings"
 fi
 
 LogAction "Starting server"
