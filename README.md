@@ -28,6 +28,10 @@ Eat lag for breakfast
 
 ## How to use
 
+> [!IMPORTANT]
+> .env settings will override the current settings in the settings.ini
+> If you do not want that to happen, set GENERATE_SETTINGS=false
+
 Copy the .env.example file to a new file called .env file. Then use either `docker compose` or `docker run`
 
 > [!IMPORTANT]
@@ -49,6 +53,8 @@ services:
       - 16261:16261/udp
       - 16262:16262/udp
       - 27015:27015/tcp
+    environment:
+      GENERATE_SETTINGS: true
     env_file:
       - .env
     volumes:
@@ -72,6 +78,7 @@ docker run -d \
     -p 16261:16261/udp \
     -p 16262:16262/udp \
     -p 27015:27015/tcp \
+    -e GENERATE_SETTINGS=true \
     --env-file .env \
     -v ./projectzomboid/data:/project-zomboid \
     -v ./projectzomboid/config:/project-zomboid-config
