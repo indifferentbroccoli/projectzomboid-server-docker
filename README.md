@@ -58,8 +58,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./projectzomboid/data:/project-zomboid
-      - ./projectzomboid/config:/project-zomboid-config
+      - ./projectzomboid/server-files:/project-zomboid
+      - ./projectzomboid/server-data:/project-zomboid-config
 ```
 
 Then run:
@@ -80,8 +80,8 @@ docker run -d \
     -p 27015:27015/tcp \
     -e GENERATE_SETTINGS=true \
     --env-file .env \
-    -v ./projectzomboid/data:/project-zomboid \
-    -v ./projectzomboid/config:/project-zomboid-config
+    -v ./projectzomboid/server-files:/project-zomboid \
+    -v ./projectzomboid/server-data:/project-zomboid-config
     indifferentbroccoli/projectzomboid-server-docker
 ```
 
