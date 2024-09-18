@@ -160,7 +160,7 @@ DiscordChannel=$DISCORD_CHANNEL
 DiscordChannelID=$DISCORD_CHANNEL_ID
 
 # Clients must know this password to join the server. (Ignored when hosting a server via the Host button)
-Password=$SERVER_PASSWORD
+Password=$PASSWORD
 
 # Limits the number of different accounts a single Steam user may create on this server. Ignored when using the Hosts button.\nMinimum=0 Maximum=2147483647 Default=0
 MaxAccountsPerUser=$MAX_ACCOUNTS_PER_USER
