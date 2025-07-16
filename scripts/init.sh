@@ -19,6 +19,13 @@ cat /branding
 
 install
 
+if [ -n "${FORCESTEAMCLIENTSOUPDATE}" ]; then
+  echo "FORCESTEAMCLIENTSOUPDATE variable is set, updating steamclient.so in Zomboid's server"
+  cp "/home/steam/steamcmd/linux64/steamclient.so" "/project-zomboid/linux64/steamclient.so"
+  cp "/home/steam/steamcmd/linux32/steamclient.so" "/project-zomboid/steamclient.so"
+fi
+
+
 # shellcheck disable=SC2317
 term_handler() {
     if ! shutdown_server; then
