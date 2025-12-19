@@ -12,7 +12,7 @@ services:
     environment:
       GENERATE_SETTINGS: true
     env_file:
-      - .env.example
+      - .env
     volumes:
       - ./server-files:/project-zomboid
       - ./server-data:/project-zomboid-config
