@@ -146,14 +146,14 @@ export ANTI_CHEAT_PROTECTION_TYPE20_THRESHOLD_MULTIPLIER=${ANTI_CHEAT_PROTECTION
 export ANTI_CHEAT_PROTECTION_TYPE22_THRESHOLD_MULTIPLIER=${ANTI_CHEAT_PROTECTION_TYPE22_THRESHOLD_MULTIPLIER:-1.0}
 export ANTI_CHEAT_PROTECTION_TYPE24_THRESHOLD_MULTIPLIER=${ANTI_CHEAT_PROTECTION_TYPE24_THRESHOLD_MULTIPLIER:-6.0}
 
-cat > "/project-zomboid-config/Server/${SERVER_NAME}.ini" <<EOF
-$(envsubst < /home/steam/server/templates/settings.ini.template)
+cat >"/project-zomboid-config/Server/${SERVER_NAME}.ini" <<EOF
+$(envsubst </home/steam/server/templates/settings.ini.template)
 EOF
 
-if ! [ -f "${SERVER_NAME}_spawnpoints.lua" ]; then
-    cp /home/steam/server/templates/server_spawnpoints.lua.template "/project-zomboid-config/Server/${SERVER_NAME}_spawnpoints.lua"
+if ! [ -f "$config_dir/${SERVER_NAME}_spawnpoints.lua" ]; then
+  cp /home/steam/server/templates/server_spawnpoints.lua.template "/project-zomboid-config/Server/${SERVER_NAME}_spawnpoints.lua"
 fi
 
-if ! [ -f "${SERVER_NAME}_spawnregions.lua" ]; then
-    cp /home/steam/server/templates/server_spawnregions.lua.template "/project-zomboid-config/Server/${SERVER_NAME}_spawnregions.lua"
+if ! [ -f "$config_dir/${SERVER_NAME}_spawnregions.lua" ]; then
+  cp /home/steam/server/templates/server_spawnregions.lua.template "/project-zomboid-config/Server/${SERVER_NAME}_spawnregions.lua"
 fi
