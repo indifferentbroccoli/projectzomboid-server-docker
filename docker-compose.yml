@@ -1,7 +1,8 @@
 ---
 services:
   projectzomboid:
-    image: indifferentbroccoli/projectzomboid-server-docker
+    build:
+      context: .
     restart: unless-stopped
     container_name: projectzomboid
     stop_grace_period: 30s
@@ -10,7 +11,7 @@ services:
       - 16262:16262/udp
       - 27015:27015/tcp
     env_file:
-      - .env.example
+      - .env
     volumes:
       - ./server-files:/project-zomboid
       - ./server-data:/project-zomboid-config
