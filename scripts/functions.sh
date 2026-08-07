@@ -116,7 +116,6 @@ check_admin_password() {
     fi
 }
 
-# Append extra JVM args from VM_ARGS into ProjectZomboid64.json
 configure_vm_args() {
     if [ -z "${VM_ARGS}" ]; then
         return 0
@@ -131,12 +130,16 @@ configure_vm_args() {
 
     LogAction "Adding extra VM args"
 
-    local args_json
-    args_json=$(printf '%s' "${VM_ARGS}" | tr ',' '\n' | jq -R . | jq -s .)
+    local arg
 
-    jq --argjson extra "$args_json" '.vmArgs += $extra' "$json_file" > "$json_file.tmp" && mv "$json_file.tmp" "$json_file"
+    for arg in $(printf '%s' "${VM_ARGS}" | tr -d "[:space:]\"'" | tr ',' ' '); do
+        if jq -e --arg arg "$arg" 'any(.vmArgs[]; . == $arg)' "$json_file" >/dev/null; then
+            continue
+        fi
 
-    LogSuccess "VM args added: ${VM_ARGS}"
+        jq --arg arg "$arg" '.vmArgs += [$arg]' "$json_file" > "$json_file.tmp" &&
+            mv "$json_file.tmp" "$json_file"
+    done
     return 0
 }
 
