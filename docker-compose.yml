@@ -2,6 +2,7 @@
 services:
   projectzomboid:
     image: indifferentbroccoli/projectzomboid-server-docker
+    user: 1000:1000
     restart: unless-stopped
     container_name: projectzomboid
     stop_grace_period: 30s

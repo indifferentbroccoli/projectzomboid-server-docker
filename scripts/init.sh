@@ -4,16 +4,16 @@ source "/home/steam/server/functions.sh"
 
 LogAction "Set file permissions"
 
-# if the user has not defined a PUID and PGID, throw an error and exit
-if [ -z "${PUID}" ] || [ -z "${PGID}" ]; then
-    LogError "PUID and PGID not set. Please set these in the environment variables."
+# check if the user is either unprivileged or allowed to run as root.
+if [ $(id -u) -eq 0 ] && [ ! "${RUN_AS_ROOT,,}" = "true" ]; then
+    LogError "Running as root is not allowed; configure user/group before running the container"
     exit 1
-else
-    usermod -o -u "${PUID}" steam
-    groupmod -o -g "${PGID}" steam
+fi
+if [ "${RUN_AS_ROOT,,}" = "true" ]; then
+    LogWarn "Running as root, please consider configuring a unprivileged user/group before running the container"
 fi
 
-chown -R steam:steam /project-zomboid /project-zomboid-config /home/steam/
+#chown -R steam:steam /project-zomboid /project-zomboid-config /home/steam/
 
 cat /branding
 

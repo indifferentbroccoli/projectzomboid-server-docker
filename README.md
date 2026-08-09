@@ -29,7 +29,16 @@ Eat lag for breakfast
 
 ## How to use
 
-Copy the .env.example file to a new file called .env file. Then use either `docker compose` or `docker run`
+Copy the .env.example file to a new file called .env file and make adjustments.
+Then make sure the mounted volumes are read/write accessible to the user that will run the server.
+If the user is named `pz` on the host, the following will setup the storage in the current folder:
+
+```bash
+mkdir ./server-files ./server-data
+sudo chown pz:pz ./server-files/ ./server-data/
+```
+
+Then use either `docker compose` or `docker run`
 
 > [!IMPORTANT]
 > Please make sure to change the following in the .env:
@@ -37,12 +46,13 @@ Copy the .env.example file to a new file called .env file. Then use either `dock
 
 ### Docker compose
 
-Starting the server with Docker Compose:
+Starting the server with Docker Compose (adjust user and group id as necessary):
 
 ```yaml
 services:
   projectzomboid:
     image: indifferentbroccoli/projectzomboid-server-docker
+    user: 1000:1000
     restart: unless-stopped
     container_name: projectzomboid
     stop_grace_period: 30s
@@ -65,8 +75,11 @@ docker-compose up -d
 
 ### Docker Run
 
+Starting the server with `docker run` directly (adjust user group id as necessary):
+
 ```bash
 docker run -d \
+    --user 1000:1000 \
     --restart unless-stopped \
     --name projectzomboid \
     --stop-timeout 30 \
@@ -83,25 +96,24 @@ docker run -d \
 
 The following environment variables control server behaviour:
 
-| Variable                                          | Default                                                                                       | Info                                                                                                                                                |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| PUID                                              | 1000                                                                                          | User ID the server runs as. Required.                                                                                                               |
-| PGID                                              | 1000                                                                                          | Group ID the server runs as. Required.                                                                                                              |
-| ADMIN_USERNAME                                    | admin                                                                                         | Admin username                                                                                                                                      |
-| ADMIN_PASSWORD                                    | CHANGEME                                                                                      | Admin password. Please change this before starting the server.                                                                                      |
-| RCON_PASSWORD                                     |                                                                                               | RCON password                                                                                                                                       |
-| RCON_PORT                                         | 27015                                                                                         | The port for the RCON (Remote Console)                                                                                                              |
-| SERVER_NAME                                       | pzserver                                                                                      | Name of the server/map                                                                                                                              |
-| DEFAULT_PORT                                      | 16261                                                                                         | Default starting port for player data.                                                                                                              |
-| UDP_PORT                                          | 16262                                                                                         | UDP port. Minimum=0 Maximum=65535                                                                                                                   |
-| MAX_PLAYERS                                       | 32                                                                                            | Maximum number of players that can be on the server at one time.                                                                                    |
-| MEMORY_XMX_GB                                     | 8                                                                                             | Server maximum memory allocation in GB. Sets -Xmx in ProjectZomboid64.json                                                                         |
-| MEMORY_XMS_GB                                     |                                                                                               | Optional: Server initial memory allocation in GB. Sets -Xms in ProjectZomboid64.json. If not specified, only -Xmx is configured                    |
-| VM_ARGS                                           |                                                                                               | Optional: extra JVM args (comma-separated) appended to vmArgs in ProjectZomboid64.json.                                                             |
-| UPDATE_ON_START                                   | true                                                                                          | If set to false, skips downloading and validating server files from Steam on startup. The server will always be installed if start-server.sh is missing. |
-| SERVER_BRANCH                                     | ""                                                                                            | Steam branch to install (e.g. "unstable" for Build 42 Unstable, "legacy41" for Build 41). Leave empty for the default public branch.                |
-| STEAM_VAC                                         | true                                                                                          | Enable Steam VAC anti-cheat.                                                                                                                        |
-| USE_STEAM                                         | true                                                                                          | Whether the server is Steam-enabled.                                                                                                                |
+| Variable        | Default  | Info                                                                                                                                                                                                         |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| RUN_AS_ROOT     | false    | Allows running the server as root within the container. Recommended to set to `false` and provide a non-privileged user when running the container. This user needs access to the mounted storage locations. |
+| ADMIN_USERNAME  | admin    | Admin username                                                                                                                                                                                               |
+| ADMIN_PASSWORD  | CHANGEME | Admin password. Please change this before starting the server.                                                                                                                                               |
+| RCON_PASSWORD   |          | RCON password                                                                                                                                                                                                |
+| RCON_PORT       | 27015    | The port for the RCON (Remote Console)                                                                                                                                                                       |
+| SERVER_NAME     | pzserver | Name of the server/map                                                                                                                                                                                       |
+| DEFAULT_PORT    | 16261    |                                                                                                                                                                                                              |
+| UDP_PORT        | 16262    | UDP port. Minimum=0 Maximum=65535                                                                                                                                                                            |
+| MAX_PLAYERS     | 32       | Maximum number of players that can be on the server at one time.                                                                                                                                             |
+| MEMORY_XMX_GB   | 8        | Server maximum memory allocation in GB. Sets -Xmx in ProjectZomboid64.json                                                                                                                                   |
+| MEMORY_XMS_GB   |          | Optional: Server initial memory allocation in GB. Sets -Xms in ProjectZomboid64.json. If not specified, only -Xmx is configured                                                                              |
+| VM_ARGS         |          | Optional: extra JVM args (comma-separated) appended to vmArgs in ProjectZomboid64.js                                                                                                                         |
+| UPDATE_ON_START | true     | If set to false, skips downloading and validating server file.                                                                                                                                               |
+| SERVER_BRANCH   | ""       | Steam branch to install (e.g. "unstable" for Build 42 Unstable, "legacy41" for Build 41). Leave empty for the default public branch.                                                                         |
+| STEAM_VAC       | true     | Enable Steam VAC anti-cheat.                                                                                                                                                                                 |
+| USE_STEAM       | true     | Whether the server is Steam-enabled.                                                                                                                                                                         |
 
 ## Configuration Files
 
