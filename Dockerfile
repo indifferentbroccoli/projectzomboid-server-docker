@@ -51,6 +51,9 @@ RUN curl -sL \
     rm /tmp/dd.zip
 
 RUN useradd -m -s /bin/bash steam
+
+RUN chmod 777 /home/steam/
+
 COPY --from=rcon-cli_builder /build/gorcon /usr/bin/rcon-cli
 
 LABEL maintainer="support@indifferentbroccoli.com" \
@@ -75,6 +78,8 @@ ENV HOME=/home/steam \
     VM_ARGS=""
 
 COPY ./scripts /home/steam/server/
+
+RUN chmod 777 /home/steam/server/
 
 COPY branding /branding
 
