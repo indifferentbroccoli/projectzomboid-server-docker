@@ -32,6 +32,9 @@ configure_memory
 # Append extra VM args if specified
 configure_vm_args
 
+# Create lowercase symlinks for mods if enabled
+fix_mod_case
+
 # shellcheck disable=SC2317
 term_handler() {
     if ! shutdown_server; then

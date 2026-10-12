@@ -169,3 +169,31 @@ configure_memory() {
     fi
     return 0
 }
+
+fix_mod_case() {
+    if [ "${FIX_MOD_CASE:-false}" != "true" ]; then
+        return 0
+    fi
+
+    LogAction "Fixing mod file case"
+
+    local mods_dir
+    for mods_dir in "$CONFIG_DIR/mods" "/project-zomboid/steamapps/workshop/content/108600"; do
+        if [ ! -d "$mods_dir" ]; then
+            continue
+        fi
+
+        LogInfo "Processing $mods_dir"
+        local file base target linked=0
+        while IFS= read -r -d '' file; do
+            base="${file##*/}"
+            target="${file%/*}/${base,,}"
+
+            if [ ! -e "$target" ] && [ ! -L "$target" ]; then
+                ln -s "$base" "$target" && linked=$((linked + 1))
+            fi
+        done < <(find "$mods_dir" -mindepth 1 -name '*[A-Z]*' -print0)
+        LogInfo "Created $linked lowercase symlinks in $mods_dir"
+    done
+    return 0
+}

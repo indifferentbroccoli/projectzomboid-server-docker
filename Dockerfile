@@ -72,7 +72,8 @@ ENV HOME=/home/steam \
     SERVER_BRANCH="" \
     MEMORY_XMX_GB=8 \
     MEMORY_XMS_GB="" \
-    VM_ARGS=""
+    VM_ARGS="" \
+    FIX_MOD_CASE=false
 
 COPY ./scripts /home/steam/server/
 
