@@ -1,6 +1,7 @@
 #!/bin/bash
 # shellcheck source=scripts/functions.sh
 source "/home/steam/server/functions.sh"
+source "/home/steam/server/restart.sh"
 
 LogAction "Set file permissions"
 
@@ -48,6 +49,13 @@ trap 'term_handler' SIGTERM
 
 # Check config for warnings
 check_admin_password
+
+if [ "${AUTO_MOD_UPDATE:-false}" = "true" ]; then
+    LogInfo "Auto mod update is enabled, starting mod update loop"
+    # Start the mod update loop in the background
+    mod_update_loop &
+    updatelooppid="$!"
+fi
 
 # Start the server
 ./start.sh &
