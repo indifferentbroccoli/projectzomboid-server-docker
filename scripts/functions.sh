@@ -69,6 +69,12 @@ rcon-call() {
   rcon-cli -c /home/steam/server/rcon.yml "$args"
 }
 
+rcon-server-msg() {
+    local message="$1"
+    LogInfo "Sending rcon message: $message"
+    rcon-call "servermsg \"$message\""
+}
+
 # Saves the server
 # Returns 0 if it saves
 # Returns 1 if it is not able to save
