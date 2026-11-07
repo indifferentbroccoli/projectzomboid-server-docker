@@ -75,6 +75,15 @@ rcon-server-msg() {
     rcon-call "servermsg \"$message\""
 }
 
+send_discord_message(){
+    local message="$1"
+    
+    if [[ $DISCORD_ENABLED == "true" && -n $DISCORD_WEBHOOK ]]; then
+        LogInfo "Sending discord message: $message"
+        curl -s -X POST -H "Content-Type: application/json" -d "{\"content\": \"$message\"}" "$DISCORD_WEBHOOK" >/dev/null 2>&1
+    fi
+}
+
 # Saves the server
 # Returns 0 if it saves
 # Returns 1 if it is not able to save
