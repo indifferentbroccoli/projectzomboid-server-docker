@@ -20,13 +20,12 @@ rcon-check-mods-need-update() {
 
 do-mods-need-update() {
     LogInfo "Checking logs for mod update check result"
-    grep -qs "CheckModsNeedUpdate: Mods need update" $CONFIG_DIR/Logs/*DebugLog*
+    grep -qs "CheckModsNeedUpdate: Mods need update" "$CONFIG_DIR/server-console.txt"
 }
 
 
 minute_countdown() {
     LogWarn "Mods need update, warning then restarting server to update mods"
-    local -a intervals
 
     for (( minute=$RESTART_DELAY; minute>=1; minute-- )); do
         rcon-server-msg "$(build_message "$minute")"
@@ -67,12 +66,25 @@ mod_update_loop() {
         sleep "$interval_seconds"
     done
 
-    # Only gets here once mods need an update
-    minute_countdown
+    while true; do
+        if [ -n "$HTTP_URL" ]; then
+            RESTART_DELAY=$(send_http_event "mods-outdated")
+        elif [ "${AUTO_MOD_UPDATE:-false}" != "true" ]; then
+            return
+        fi
 
-    thirty_second_message
+        if [[ $RESTART_DELAY =~ ^[1-9][0-9]*$ ]]; then
+            minute_countdown
+            thirty_second_message
+            ten_second_countdown
 
-    ten_second_countdown
+            if [ -z "$HTTP_URL" ]; then
+                shutdown_server
+                return
+            fi
+            send_http_event "mod-update-restart" > /dev/null
+        fi
 
-    shutdown_server
+        sleep "$interval_seconds"
+    done
 }

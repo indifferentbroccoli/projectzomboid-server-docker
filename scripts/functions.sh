@@ -122,13 +122,15 @@ send_discord_message(){
     fi
 }
 
-send_dashboard_health_status() {
-    local status="$1"
-
-    if [[ $DASHBOARD_ENABLED == "true" && -n $DASHBOARD_HEALTH_URL ]]; then
-        LogInfo "Sending dashboard health status"
-        remote-web-call "$DASHBOARD_HEALTH_URL" "{\"status\": \"$status\"}" POST true "$DASHBOARD_HEALTH_AUTH"
+send_http_event() {
+    local event="$1"
+    local body
+    local -a cmd=(curl -sSf --max-time 30 --retry 3 --retry-delay 10 -H "Content-Type: application/json")
+    body=$(jq -nc --arg username "$HTTP_USERNAME" --arg event "$event" '{username: $username, event: $event}')
+    if [ -n "$HTTP_AUTH" ]; then
+        cmd+=(-u "$HTTP_AUTH")
     fi
+    "${cmd[@]}" -d "$body" "$HTTP_URL"
 }
 
 # Saves the server

@@ -50,9 +50,8 @@ trap 'term_handler' SIGTERM
 # Check config for warnings
 check_admin_password
 
-if [ "${AUTO_MOD_UPDATE:-false}" = "true" ]; then
-    LogInfo "Auto mod update is enabled, starting mod update loop"
-    # Start the mod update loop in the background
+if [ "${AUTO_MOD_UPDATE:-false}" = "true" ] || [ -n "$HTTP_URL" ]; then
+    LogInfo "Starting mod update loop"
     mod_update_loop &
     updatelooppid="$!"
 fi
