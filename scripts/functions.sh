@@ -92,8 +92,6 @@ remote-web-call() {
         return 1
     fi
 
-    LogInfo "Making $method request to $url"
-
     local -a cmd=(curl -sSf --max-time 60)
 
     if [ "$retry" = "true" ]; then
@@ -110,7 +108,7 @@ remote-web-call() {
 
     cmd+=("$url")
 
-    nohup "${cmd[@]}" > /dev/null 2>&1 &
+    "${cmd[@]}"
 }
 
 send_discord_message(){
@@ -118,19 +116,14 @@ send_discord_message(){
     
     if [[ $DISCORD_ENABLED == "true" && -n $DISCORD_WEBHOOK ]]; then
         LogInfo "Sending discord message: $message"
-        remote-web-call "$DISCORD_WEBHOOK" "{\"content\": \"$message\"}" POST
+        remote-web-call "$DISCORD_WEBHOOK" "{\"content\": \"$message\"}" POST > /dev/null 2>&1 &
     fi
 }
 
 send_http_event() {
-    local event="$1"
     local body
-    local -a cmd=(curl -sSf --max-time 30 --retry 3 --retry-delay 10 -H "Content-Type: application/json")
-    body=$(jq -nc --arg username "$HTTP_USERNAME" --arg event "$event" '{username: $username, event: $event}')
-    if [ -n "$HTTP_AUTH" ]; then
-        cmd+=(-u "$HTTP_AUTH")
-    fi
-    "${cmd[@]}" -d "$body" "$HTTP_URL"
+    body=$(jq -nc --arg username "$HTTP_USERNAME" --arg event "$1" '{username: $username, event: $event}')
+    remote-web-call "$HTTP_URL" "$body" POST true "$HTTP_AUTH"
 }
 
 # Saves the server
