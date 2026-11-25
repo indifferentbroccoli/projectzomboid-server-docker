@@ -69,6 +69,63 @@ rcon-call() {
   rcon-cli -c /home/steam/server/rcon.yml "$args"
 }
 
+rcon-server-msg() {
+    local message="$1"
+    LogInfo "Sending rcon message: $message"
+    rcon-call "servermsg \"$message\""
+}
+
+remote-web-call() {
+    local url="$1"
+    local data="$2"
+    local method="${3:-POST}"
+    local retry="${4:-false}"
+    local web_auth="$5"
+
+    if [ -z "$url" ]; then
+        LogError "URL is required for remote web call"
+        return 1
+    fi
+
+    if [ "$method" != "POST" ] && [ "$method" != "GET" ]; then
+        LogError "Invalid HTTP method: $method. Only POST and GET are supported."
+        return 1
+    fi
+
+    local -a cmd=(curl -sSf --max-time 60)
+
+    if [ "$retry" = "true" ]; then
+        cmd+=(--retry 10 --retry-delay 15 --retry-connrefused)
+    fi
+
+    if [ -n "$web_auth" ]; then
+        cmd+=(-u "$web_auth")
+    fi
+
+    if [ "$method" = "POST" ]; then
+        cmd+=(-X POST -H "Content-Type: application/json" -d "$data")
+    fi
+
+    cmd+=("$url")
+
+    "${cmd[@]}"
+}
+
+send_discord_message(){
+    local message="$1"
+    
+    if [[ $DISCORD_ENABLED == "true" && -n $DISCORD_WEBHOOK ]]; then
+        LogInfo "Sending discord message: $message"
+        remote-web-call "$DISCORD_WEBHOOK" "{\"content\": \"$message\"}" POST > /dev/null 2>&1 &
+    fi
+}
+
+send_http_event() {
+    local body
+    body=$(jq -nc --arg username "$HTTP_USERNAME" --arg event "$1" '{username: $username, event: $event}')
+    remote-web-call "$HTTP_URL" "$body" POST true "$HTTP_AUTH"
+}
+
 # Saves the server
 # Returns 0 if it saves
 # Returns 1 if it is not able to save
